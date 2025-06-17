@@ -46,6 +46,10 @@ const flow = () =>{
     console.log("Player 1 wins!")
     return;
   }
+  else if(!x.includes('')){
+    console.log("Tie")
+    return
+  }
   if(turn = player2){
   moveTwo = prompt("Player 2, where do you wanna play?")
   check(x,player2,moveTwo)}
@@ -57,12 +61,18 @@ const flow = () =>{
      x[3]=="O" && x[4]=="O" && x[5]=="O"||
      x[0]=="O" && x[4]=="O" && x[8]=="O"||
      x[6]=="O" && x[4]=="O" && x[2]=="O"){
-    console.log("Player 2 wins")
+    console.log("Player 2 wins!")
     return;
   }
-
+  else if(!x.includes('')){
+    console.log("Tie")
+    return
+  }
   
-  else{flow();}
+  if(x.includes('')){
+    flow();
+  }
+  
   
 }
 flow()
