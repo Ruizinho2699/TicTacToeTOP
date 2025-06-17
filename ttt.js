@@ -1,31 +1,18 @@
-function Gameboard (){
-    const columns = 3;
-    const rows = 3;
-    const board = [];
-    
+function Gameboard() {
 
-    for(let i=0;i<rows;i++){
-        board[i]=[];
-        for(let j=0;j<columns;j++){
-            board[i].push(0);
-        }
-    }
+let board = [0,0,0,0,0,0,0,0,0]
 
-   const checkSpace = (row,cell) =>{
-      if(board[row][cell]===0){
-        let stat = "free";
-        return stat;
-      };
-      if(board[row][cell] === "X" || board[row][cell] === "O" ){
-        let stat = "not free";
-        return stat;
-      }
-   }
-console.log(board)
+const players = (player,icon) =>{
+   return player,icon;
 }
-Gameboard()
+
+let player1 = players("Player1","X")
+let player2 = players("Player2","O")
 
 
 
+return {board,player1,player2};
 
-  
+}
+
+console.log(Gameboard())
