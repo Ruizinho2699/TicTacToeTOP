@@ -28,9 +28,45 @@ function Playing(){
     console.log("not free");
   }};
 
-check(x,player1,2)
-check(x,player2,1)
-console.log(x)
 
+console.log(x)
+const flow = () =>{
+  let turn = player1;
+  if(turn = player1){
+  moveOne = prompt("Player 1, where do you wanna play?")
+  check(x,player1,moveOne)}
+  if(x[0]=="X" && x[1]=="X" && x[2]=="X"||
+    x[0]=="X" && x[3]=="X" && x[6]=="X"||
+    x[2]=="X" && x[5]=="X" && x[8]=="X"||
+    x[6]=="X" && x[7]=="X" && x[8]=="X"||
+    x[1]=="X" && x[4]=="X" && x[7]=="X"||
+    x[3]=="X" && x[4]=="X" && x[5]=="X"||
+    x[0]=="X" && x[4]=="X" && x[8]=="X"||
+    x[6]=="X" && x[4]=="X" && x[2]=="X"){
+    console.log("Player 1 wins!")
+    return;
+  }
+  if(turn = player2){
+  moveTwo = prompt("Player 2, where do you wanna play?")
+  check(x,player2,moveTwo)}
+  if(x[0]=="O" && x[1]=="O" && x[2]=="O"||
+     x[0]=="O" && x[3]=="O" && x[6]=="O"||
+     x[2]=="O" && x[5]=="O" && x[8]=="O"||
+     x[6]=="O" && x[7]=="O" && x[8]=="O"||
+     x[1]=="O" && x[4]=="O" && x[7]=="O"||
+     x[3]=="O" && x[4]=="O" && x[5]=="O"||
+     x[0]=="O" && x[4]=="O" && x[8]=="O"||
+     x[6]=="O" && x[4]=="O" && x[2]=="O"){
+    console.log("Player 2 wins")
+    return;
+  }
+
+  
+  else{flow();}
+  
+}
+flow()
+console.log(x)
 }
 Playing()
+
