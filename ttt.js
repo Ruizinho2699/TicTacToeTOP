@@ -14,7 +14,7 @@ return {board,player1,player2};
 }
 
 function Playing(){
-  const x =Gameboard().board
+  const x = Gameboard().board
   const player1 = Gameboard().player1
   const player2 = Gameboard().player2
    const check = (tray,player,cell) =>{
@@ -43,6 +43,7 @@ const flow = () =>{
     x[3]=="X" && x[4]=="X" && x[5]=="X"||
     x[0]=="X" && x[4]=="X" && x[8]=="X"||
     x[6]=="X" && x[4]=="X" && x[2]=="X"){
+    console.log(x)  
     console.log("Player 1 wins!")
     return;
   }
@@ -61,6 +62,7 @@ const flow = () =>{
      x[3]=="O" && x[4]=="O" && x[5]=="O"||
      x[0]=="O" && x[4]=="O" && x[8]=="O"||
      x[6]=="O" && x[4]=="O" && x[2]=="O"){
+      console.log(x) 
     console.log("Player 2 wins!")
     return;
   }
@@ -76,7 +78,34 @@ const flow = () =>{
   
 }
 flow()
-console.log(x)
+return{x}
 }
-Playing()
+
+function Display(){
+ const board = Playing().x;
+ const div = document.createElement("div");
+ document.body.appendChild(div);
+ div.id = "game"
+
+ document.getElementById(`game`).innerHTML=
+  `<div id="row1">
+  <div id="cell1"> ${board[0]}</div>
+  <div id="cell2"> ${board[1]}</div>
+  <div id="cell3"> ${board[2]}</div>
+  </div>`+
+  `<div id="row2">
+  <div id="cell4"> ${board[3]}</div>
+  <div id="cell5"> ${board[4]}</div>
+  <div id="cell6"> ${board[5]}</div>
+  </div>`+
+  `<div id="row3">
+  <div id="cell7"> ${board[6]}</div>
+  <div id="cell8"> ${board[7]}</div>
+  <div id="cell9"> ${board[8]}</div>
+  </div>`;
+
+}
+
+Display();
+
 
