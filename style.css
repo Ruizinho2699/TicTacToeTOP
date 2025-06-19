@@ -1,0 +1,51 @@
+*{
+    margin:0;
+    padding:0;
+}
+body{
+    display:grid;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    background-color: rgb(126, 121, 121);
+}
+#game{
+    font-size:50px;
+    display:grid;
+    height:500px;
+    width:500px;
+
+    justify-content:center;
+    grid-template-columns: repeat(3,1fr);
+    grid-template-rows: repeat(3,1fr);
+}
+
+[id^="row"]{
+    grid-column:1/5;
+    display:grid;
+    grid-template-columns: repeat(3,1fr);
+
+}
+
+[id^="cell"]:nth-child(-n+3){
+    
+    border-top:none;
+}
+[id^="cell"]:nth-child(3n){
+border-right:none;
+}
+
+[id^="cell"]:nth-child(3n-2){
+    border-left:none;
+ 
+}
+#cell7,#cell8,#cell9{
+    border-bottom:none;
+}
+
+[id^="cell"]{
+    color:goldenrod;
+    border:2px solid goldenrod;
+    display:grid;
+    place-content: center;
+}
