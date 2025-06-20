@@ -23,7 +23,43 @@ const check = (player,cell) =>{
     }
   };
 
-return{check}
+const win = (board)=>{
+
+  if(board[0]=="X" && board[1]=="X" && board[2]=="X"||
+    board[0]=="X" && board[3]=="X" && board[6]=="X"||
+    board[2]=="X" && board[5]=="X" && board[8]=="X"||
+    board[6]=="X" && board[7]=="X" && board[8]=="X"||
+    board[1]=="X" && board[4]=="X" && board[7]=="X"||
+    board[3]=="X" && board[4]=="X" && board[5]=="X"||
+    board[0]=="X" && board[4]=="X" && board[8]=="X"||
+    board[6]=="X" && board[4]=="X" && board[2]=="X"){
+    console.log("Player 1 wins");
+    Object.freeze(board);
+
+  }
+  else if(!board.includes('')){
+    console.log("Tie");
+    
+  }
+
+  if(board[0]=="O" && board[1]=="O" && board[2]=="O"||
+     board[0]=="O" && board[3]=="O" && board[6]=="O"||
+     board[2]=="O" && board[5]=="O" && board[8]=="O"||
+     board[6]=="O" && board[7]=="O" && board[8]=="O"||
+     board[1]=="O" && board[4]=="O" && board[7]=="O"||
+     board[3]=="O" && board[4]=="O" && board[5]=="O"||
+     board[0]=="O" && board[4]=="O" && board[8]=="O"||
+     board[6]=="O" && board[4]=="O" && board[2]=="O"){
+    console.log("Player 2 wins!");
+    Object.freeze(board);
+  }
+  else if(!board.includes('')){
+    console.log("Tie");
+    
+  }
+}
+
+return{check,win}
 }
 
 
@@ -31,8 +67,8 @@ function Display(){
  const board = Gameboard().board;
  const p1=Gameboard().player1;
  const p2=Gameboard().player2;
- const play = Playing(board)
- 
+ const play = Playing(board);
+
  const div = document.createElement("div");
  document.body.appendChild(div);
  div.id = "game"
@@ -57,6 +93,8 @@ function Display(){
 
   const input = () =>{
   let turn = p1;
+  const screen = document.querySelector("#display")
+  screen.textContent="Player 1's turn!"
   for(let i = 0; i<board.length;i++){
   const cell = document.querySelector(`#cell${i+1}`);
   cell.addEventListener("click",()=>{
@@ -64,13 +102,33 @@ function Display(){
       play.check(turn,i)
       cell.textContent=board[i];
       turn = p2
+      play.win(board)
       console.log(board)
+      
+      if(Object.isFrozen(board)){
+        turn = "Player 1";
+        screen.textContent=`Game Over! ${turn} wins!`
+      }
+      else{
+        screen.textContent="Player 2's turn!"
+      }
+      
     }
     else if(turn === p2){
       play.check(turn,i)
       cell.textContent=board[i];
       turn = p1;
       console.log(board)
+      play.win(board)
+      if(Object.isFrozen(board)){
+        turn = "Player 2"
+        screen.textContent=`Game Over! ${turn} wins!`
+      }
+      else{
+        screen.textContent="Player 1's turn!"
+      }
+  
+
     }
   })
 
@@ -83,8 +141,9 @@ function Display(){
 function winning(){
   let display = Display()
   let type = display.input()
-
+  
   return type;
+  
 }
 
 winning()
